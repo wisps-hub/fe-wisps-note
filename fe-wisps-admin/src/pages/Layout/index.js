@@ -1,17 +1,27 @@
 import { Outlet } from "react-router-dom"
-import SideComp from "./SideComp"
-import TopComp from "./TopComp"
+import { Layout, theme } from 'antd';
+import SideComp from "@/components/SideComp"
+import TopComp from "@/components/TopComp"
 
 const NLayout = ()=>{
 
+    const { Content } = Layout;
+    const {
+        token: { colorBgContainer, borderRadiusLG },
+    } = theme.useToken();
+
     return (
-        <div>
-            <TopComp />
+        <Layout>
             <SideComp />
-            <main>
-                <Outlet />
-            </main>
-        </div>
+            <Layout>
+                <TopComp />
+                <Content style={{margin: '24px 16px', padding: 24, minHeight: 280, background: colorBgContainer, borderRadius: borderRadiusLG}} >
+                    <main> 
+                        <Outlet /> 
+                    </main>
+                </Content>
+            </Layout>
+        </Layout>
     )
 }
 
