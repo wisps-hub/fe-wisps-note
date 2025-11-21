@@ -112,3 +112,8 @@ npm i source-map-explorer
 ```
 
 ## 12 cdn优化
+
+## 13 代理
+```
+npm install http-proxy-middleware --save
+```
