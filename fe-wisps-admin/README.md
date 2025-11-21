@@ -1,70 +1,114 @@
-# Getting Started with Create React App
+## 1 init
+npx create-react-app demo
+create folder 
+- apis
+- assets
+- components
+- pages
+- router
+- store
+- utils
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+npm start
 
-## Available Scripts
+## 2 install sass
+```
+npm i sass -D
+```
 
-In the project directory, you can run:
+## 3 install ant design
+```
+npm install antd --save
+npm install @ant-design/icons@5.x --save
+npm install normalize.css
+```
 
-### `npm start`
+## 4 install react-router-dom
+```
+npm install react-router-dom
+```
+{doc link : https://reactrouter.com/6.28.0/start/overview}
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 5 配置@别名路径
+1 路径转换，修改webpack别名路径配置 craco
+```
+npm i @craco/craco -D
+```
+- 根目录下创建 craco.config.js
+```
+const path = require('path')
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+module.exports = {
+    //webpack配置
+    webpack: {
+        //配置别名
+        alias: {
+            //约定：使用@标识src文件所在路径
+            '@': path.resolve(__dirname, 'src')
+        }
+    }
+}
+```
+- 修改package.json
+```
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject"
+  },
+```
+2 联想提示， 修改vscode配置 jsconfig.json
+-根目录下创建 jsconfig.json文件
+```
+{
+    "compilerOptions": {
+        "baseUrl": "./",
+        "paths": {
+            "@/*": ["src/*"]
+        }
+    }
+}
+```
+## 6 安装axios
+```
+npm i axios
+```
 
-### `npm test`
+## 7 redux 管理token
+```
+npm i react-redux @reduxjs/toolkit
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 8 安装echarts
+```
+npm install echarts
+```
 
-### `npm run build`
+## 9 安装附文本编辑器
+```
+npm i react-quill-new
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 10 打包+本地预览
+```
+<!-- 打包 -->
+npm run build 
+<!-- 预览 -->
+npm i -g serve
+serve -s ./build
+浏览器访问 http://localhost:3000
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 11 包体积分析
+```
+npm i source-map-explorer
+```
+修改package.json
+```
+ "scripts": {
+    "analyze": "source-map-explorer 'build/static/js/*.js'"
+  },
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 12 cdn优化
