@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
 import { Layout, Menu } from 'antd';
-import { getMenusAPI, toItem } from "@/apis/Menu";
-import './index.scss'
 import { useLocation, useNavigate } from "react-router-dom";
+import { getMenusAPI } from "@/apis/Menu";
+import { MenuUtil } from "@/utils";
+import './index.scss'
 
 const { Sider } = Layout;
 
@@ -19,7 +20,7 @@ const SideComp = ()=>{
         const getMenus = async ()=>{
             const res = await getMenusAPI();
             if(res?.length > 0){
-                setMenus(res.map(item=> toItem(item)))
+                setMenus(res.map(item=> MenuUtil.toItem(item)))
             }
         }
         getMenus();
