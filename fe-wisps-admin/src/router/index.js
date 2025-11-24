@@ -9,6 +9,7 @@ import News from "@/pages/News";
 import Approve from "@/pages/Approve";
 import Publish from "@/pages/Publish";
 import NoPermession from "@/pages/403";
+import Setting from "@/pages/Setting";
 
 
 const AdminRouter = ()=>{
@@ -21,16 +22,18 @@ const AdminRouter = ()=>{
                     <Route index element={<Navigate to="/home" replace />} />
                     <Route path="/home" Component={Home} />
                     {/* 用户管理 */}
-                    <Route path="/manage-user/list" Component={User} />
+                    <Route path="/user/list" Component={User} />
                     {/* 权限管理 */}
-                    <Route path="/manage-perm/role/list" Component={Role} />
-                    <Route path="/manage-perm/perm/list" Component={Permession} />
+                    <Route path="/permession/role/list" Component={Role} />
+                    <Route path="/permession/list" Component={Permession} />
                     {/* 新闻管理 */}
                     <Route path="/news" Component={News} />
                     {/* 审核管理 */}
                     <Route path="/approve" Component={Approve} />
                     {/* 发布管理 */}
                     <Route path="/publish" Component={Publish} />
+                    {/* 发布管理 */}
+                    <Route path="/settine" Component={Setting} />
                     {/* 403 */}
                     {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
                     <Route path="*" Component={NoPermession} />

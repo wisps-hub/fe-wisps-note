@@ -23,8 +23,7 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject",
-    "json-server":"json-server db.json --port 4000"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [

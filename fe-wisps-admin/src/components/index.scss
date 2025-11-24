@@ -1,0 +1,13 @@
+.logo{
+    margin: 10px;
+    text-align: center;
+    line-height: 32px;
+    border-radius: 5px;
+    background-color: rgba($color: #ffffff, $alpha: 0.1);
+    font-size: 18px;
+    color: white;
+}
+
+::-webkit-scrollbar {width:5px;height:5px;position:absolute;}
+::-webkit-scrollbar-thumb {background-color:#596067}
+::-webkit-scrollbar-track {background-color:#051a32}

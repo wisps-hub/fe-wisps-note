@@ -1,36 +1,44 @@
-import { useState } from "react"
-import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
+import { useEffect, useState } from "react"
 import { Layout, Menu } from 'antd';
+import { getMenusAPI, toItem } from "@/apis/Menu";
+import './index.scss'
+import { useLocation, useNavigate } from "react-router-dom";
 
 const { Sider } = Layout;
-
-const items = [
-    {
-        key: '1',
-        icon: <UserOutlined />,
-        label: 'nav 1',
-    },
-    {
-        key: '2',
-        icon: <VideoCameraOutlined />,
-        label: 'nav 2',
-    },
-    {
-        key: '3',
-        icon: <UploadOutlined />,
-        label: 'nav 3',
-    }
-]
-
 
 const SideComp = ()=>{
 
     const [collapsed] = useState(false);
+    const path = useLocation();
+    const openKey = "/" + path.pathname.split("/")[1]
+    const navigate = useNavigate();
+
+    //渲染菜单
+    const [menus, setMenus] = useState([])
+    useEffect(()=>{
+        const getMenus = async ()=>{
+            const res = await getMenusAPI();
+            if(res?.length > 0){
+                setMenus(res.map(item=> toItem(item)))
+            }
+        }
+        getMenus();
+    }, [])
 
     return (
         <Sider trigger={null} collapsible collapsed={collapsed}>
-            <div className="demo-logo-vertical" />
-            <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} items={items} />
+            <div style={{display: "flex", height: "100%", flexDirection:"column"}}>
+                <div className="logo" >后台管理系统 </div>
+                <div style={{flex: 1, overflow:"auto"}}>
+                    <Menu theme="dark" 
+                    mode="inline" 
+                    onClick={(item)=> navigate(item.key)}
+                    selectedKeys={[path.pathname]} 
+                    defaultOpenKeys={[openKey]}
+                    items={menus} />
+                </div>
+            </div>
+            
         </Sider>
     )
 }
