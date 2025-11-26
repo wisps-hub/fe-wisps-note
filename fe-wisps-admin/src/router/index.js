@@ -33,7 +33,7 @@ const AdminRouter = ()=>{
                     {/* 发布管理 */}
                     <Route path="/publish" Component={Publish} />
                     {/* 发布管理 */}
-                    <Route path="/settine" Component={Setting} />
+                    <Route path="/setting" Component={Setting} />
                     {/* 403 */}
                     {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
                     <Route path="*" Component={NoPermession} />

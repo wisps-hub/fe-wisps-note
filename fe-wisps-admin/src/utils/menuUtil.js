@@ -47,8 +47,8 @@ const MenuUtil = {
     
         let subMenus = [];
     
-        if(menu.subMenus?.length > 0){
-            subMenus = menu.subMenus.map(item=>this.toItem(item))
+        if(menu.permChilds?.length > 0){
+            subMenus = menu.permChilds.map(item=>this.toItem(item))
         }
     
         return subMenus.length > 0? 
