@@ -1,0 +1,206 @@
+{
+  "perms": [
+    {
+      "id": "1",
+      "title": "首页",
+      "key": "/home",
+      "grade": "1",
+      "type": 0
+    },
+    {
+      "id": "2",
+      "title": "用户管理",
+      "key": "/user",
+      "grade": "1",
+      "type": 0
+    },
+    {
+      "id": "3",
+      "title": "权限管理",
+      "key": "/permession",
+      "grade": "1",
+      "type": 0
+    },
+    {
+      "id": "4",
+      "title": "新闻管理",
+      "key": "/news",
+      "grade": "1",
+      "type": 0
+    },
+    {
+      "id": "5",
+      "title": "审核管理",
+      "key": "/approve",
+      "grade": "1",
+      "type": 0
+    },
+    {
+      "id": "6",
+      "title": "发布管理",
+      "key": "/publish",
+      "grade": "1",
+      "type": 0
+    },
+    {
+      "id": "7",
+      "title": "系统设置",
+      "key": "/setting",
+      "grade": "1",
+      "type": 0
+    }
+  ],
+  "permChilds": [
+    {
+      "id": "8",
+      "title": "用户列表",
+      "key": "/user/list",
+      "grade": "2",
+      "permId": "2",
+      "type": 0
+    },
+    {
+      "id": "9",
+      "title": "角色列表",
+      "key": "/permession/role/list",
+      "grade": "2",
+      "permId": "3",
+      "type": 0
+    },
+    {
+      "id": "10",
+      "title": "权限列表",
+      "key": "/permession/list",
+      "grade": "2",
+      "permId": "3",
+      "type": 0
+    },
+    {
+      "id": "11",
+      "title": "写新闻",
+      "key": "/news/create",
+      "grade": "2",
+      "permId": "4",
+      "type": 0
+    },
+    {
+      "id": "12",
+      "title": "新闻列表",
+      "key": "/news/list",
+      "grade": "2",
+      "permId": "4",
+      "type": 0
+    },
+    {
+      "id": "13",
+      "title": "草稿箱",
+      "key": "/news/draft",
+      "grade": "2",
+      "permId": "4",
+      "type": 0
+    },
+    {
+      "id": "14",
+      "title": "频道分类",
+      "key": "/news/channel",
+      "grade": "2",
+      "permId": "4",
+      "type": 0
+    },
+    {
+      "id": "15",
+      "title": "审核列表",
+      "key": "/approve/list",
+      "grade": "2",
+      "permId": "5",
+      "type": 0
+    },
+    {
+      "id": "16",
+      "title": "发布列表",
+      "key": "/publish/list",
+      "grade": "2",
+      "permId": "6",
+      "type": 0
+    },
+    {
+      "id": "17",
+      "title": "发布",
+      "key": "/publish/pub",
+      "grade": "2",
+      "permId": "6",
+      "type": 0
+    },
+    {
+      "id": "18",
+      "title": "下线",
+      "key": "/publish/unPub",
+      "grade": "2",
+      "permId": "6",
+      "type": 0
+    }
+  ],
+  "roles": [
+    {
+      "id": "1",
+      "title": "超级管理员",
+      "perms": [
+        "/user",
+        "/permessions",
+        "/user/list"
+      ]
+    },
+    {
+      "id": "2",
+      "title": "管理员",
+      "perms": [
+        "/user",
+        "/permessions",
+        "/user/list"
+      ]
+    },
+    {
+      "id": "3",
+      "title": "普通用户",
+      "perms": [
+        "/user",
+        "/permessions",
+        "/user/list"
+      ]
+    }
+  ],
+  "users": [
+    {
+			"id":"1",
+			"name":"王大锤",
+			"sex":0,
+			"state":3,
+			"roleId":"1",
+			"default":0
+		},
+    {
+      "id": "2",
+      "name": "小小",
+      "sex": 1,
+      "state": 2,
+      "roleId": "2",
+      "default": 1
+    },
+    {
+      "id": "3",
+      "name": "大大",
+      "sex": 0,
+      "state": 1,
+      "roleId": "3",
+      "default": 1
+    },
+    {
+      "id": "4",
+      "name": "大小",
+      "sex": 1,
+      "state": 4,
+      "roleId": "3",
+      "default": 1
+    }
+  ]
+}
