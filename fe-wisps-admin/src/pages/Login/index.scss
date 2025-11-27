@@ -10,94 +10,122 @@
 .ant-tabs-tab-btn{
     font-size: 15px;
 }
-.login{
-    border: #f8f8f8 1px solid;
-    border-radius: 12px;
+
+.container{
+    width: 100%;
+    height: 100%;
     display: flex;
-    width: 450px;
-    height: 540px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    position: absolute;
-
-    .bubble {
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity .2s, visibility .2s;
-        transition-delay: 0ms;
-        position: absolute;
-        top: 10px;
-        right: 70px;
-        background-color: #3875f7;
-        border-radius: 8px;
-        padding: 0px 12px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        max-width: 150px;
-        font-size: 14px;
-        color: white;
-        z-index: 1;
-        .arrow {
-            position: absolute;
-            width: 20px;
-            aspect-ratio: 1 / 1;
-            background-color: #3875f7;
-            clip-path: polygon(0 0, 100% 0, 100% 100%);
-            transform: rotate(45deg);
-            transform-origin: center;
-            top:12px;
-            right:-5px;
-            z-index: 1;
+    position: relative;
+    
+    .login-sider{
+        width: 500px;
+        height: 100%;
+        background-color: #efefef;
+        /* 当视口宽度 < 1000px 时隐藏 */
+        @media (max-width: 999px) {
+            display: none;
         }
-    }
-
-    .qr{
-        position: absolute;
-        top:5px;
-        right:5px;
-        width:60px;
-        height:60px;
-        line-height: 60px;
-        background:#8aa6f6;
-        clip-path:polygon(0 0,100% 0,100% 100%); /* 直角三角形 */
-        border-radius: 0 8px 0 0;
-        z-index: 1;
-        font-size: 48px;
-        text-align: center;
-        color: white;
     }
 
     .login-container{
         width: 100%;
-        padding: 0 20px;
-        border-radius: 12px;
-        box-shadow: 0 0 30px rgba(0,0,0,0.1);
+        height: 100%;
         position: relative;
-        .otherLogin{
-            padding: 0 24px;
-            margin: 0 auto;
-            .text{
-                color: #929292;
-                font-weight: normal;
+
+        .login{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 450px;
+            height: 540px;
+            padding: 0 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            border: #f8f8f8 1px solid;
+            background-color: white;
+
+            .bubble {
+                position: absolute;
+                top: 10px;
+                right: 70px;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity .2s, visibility .2s;
+                transition-delay: 0ms;
+                background-color: #3875f7;
+                border-radius: 8px;
+                padding: 0px 12px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                max-width: 150px;
                 font-size: 14px;
-                letter-spacing: 0.1em;
+                color: white;
+                z-index: 1;
+                .arrow {
+                    position: absolute;
+                    width: 20px;
+                    aspect-ratio: 1 / 1;
+                    background-color: #3875f7;
+                    clip-path: polygon(0 0, 100% 0, 100% 100%);
+                    transform: rotate(45deg);
+                    transform-origin: center;
+                    top:12px;
+                    right:-5px;
+                    z-index: 1;
+                }
+            }
+
+            .qr{
+                position: absolute;
+                top:5px;
+                right:5px;
+                width:60px;
+                height:60px;
+                line-height: 60px;
+                background:#8aa6f6;
+                clip-path:polygon(0 0,100% 0,100% 100%); /* 直角三角形 */
+                border-radius: 0 8px 0 0;
+                z-index: 1;
+                font-size: 48px;
+                text-align: center;
+                color: white;
+            }
+
+            .qr:hover{
+                background-color: #3875f7;
+            }
+
+            .otherLogin{
+                padding: 0 24px;
+                margin: 50px auto 0;
+                .text{
+                    color: #b4b4b4;
+                    font-weight: normal;
+                    font-size: 14px;
+                    letter-spacing: 0.1em;
+                }
+            }
+
+            .registerText{
+                position: absolute;
+                width: 100%;
+                font-size: 14px;
+                bottom: -45px;
+                justify-content: center;
+                text-align: center
             }
         }
     }
 
-    .registerText{
-        position: absolute;
-        width: 100%;
-        font-size: 14px;
-        bottom: -45px;
-        justify-content: center;
-        text-align: center
-    }
+    
+
     
 }
 
-.qr:hover + .bubble{ 
+/* 进入登录框且鼠标在二维码上时，延迟 200 ms 显示气泡 */
+.login:hover .qr:hover ~ .bubble,
+.login:hover .bubble:hover {   /* 允许鼠标滑到气泡上 */
     visibility: visible;
     opacity: 1;
-    transition-delay: 200ms; /* 出现延迟 200 ms */
+    transition-delay: 200ms;
 }
