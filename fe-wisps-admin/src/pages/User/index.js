@@ -9,6 +9,7 @@ const User = ()=>{
     //删除
     const confirmDel = item => {
         deleteUserAPI(item.id)
+        window.location.reload()
     };
 
     //表格定义
@@ -86,27 +87,30 @@ const User = ()=>{
 
     
     const [form] = Form.useForm();
-    const [formInitValues, setFormInitValues] = useState();
     const [open, setOpen] = useState(false);
 
     //展示编辑表单
     const showEditor = async (item)=>{
         const res = await getUserAPI(item.id);
         const user = res[0];
-        setFormInitValues({
-            id: user.id,
-            username: user.name,
-            password: 111111,
-            role: user.roleId,
+        console.log(user);
+        console.log(form);
+        const values = {
+            ...item,
             state: user.state > 1 && user.state < 4
-        })
+        }
+        form.setFieldsValue(values)
         setOpen(true);
     }
 
     //创建or更新
     const onCreate = values => {
-        console.log('Received values of form: ', values);
-        // createUserAPI(values);
+        const formValus = {
+            ...values,
+            state: values['state']? 2 : 1
+        }
+        createUserAPI(formValus);
+        window.location.reload();
         setOpen(false);
     };
 
@@ -120,20 +124,18 @@ const User = ()=>{
 
             <Modal
                 open={open}
-                title={formInitValues?.id? "更新用户" : "新建用户"}
-                okText={formInitValues?.id? "更新" : "新建"}
+                title={form.getFieldValue('id')? "更新用户" : "新建用户"}
+                okText={form.getFieldValue('id')? "更新" : "新建"}
                 cancelText="取消"
-                okButtonProps={{ autoFocus: true, htmlType: 'submit' }}
+                okButtonProps={{ autoFocus: true, htmlType: 'submit', disabled: form.getFieldValue('id')}}
                 onCancel={() => setOpen(false)}
                 destroyOnHidden
                 modalRender={dom => (
-                    <Form
-                        layout="vertical"
-                        form={form}
-                        initialValues={formInitValues}
-                        clearOnDestroy
-                        onFinish={values => onCreate(values)}
-                    >
+                    <Form 
+                        layout="vertical" 
+                        form={form} 
+                        clearOnDestroy 
+                        onFinish={values => onCreate(values)} >
                         {dom}
                     </Form>
                 )}
@@ -147,7 +149,7 @@ const User = ()=>{
                 <Form.Item name="password" label="初始密码">
                     <Input />
                 </Form.Item>
-                <Form.Item name="role" label="角色">
+                <Form.Item name="roleId" label="角色">
                     <Select options={roles} />
                 </Form.Item>
                 <Form.Item name="state" label="是否激活" className="collection-create-form_last-form-item">

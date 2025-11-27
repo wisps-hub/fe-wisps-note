@@ -5,6 +5,7 @@ const UserUtil = {
     toColumnData(user){
         return {
             ...user,
+            name: user.username,
             key: user.id
         }
     },
