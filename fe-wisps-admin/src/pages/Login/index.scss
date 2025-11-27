@@ -18,9 +18,14 @@
     position: relative;
     
     .login-sider{
-        width: 500px;
+        width: 700px;
         height: 100%;
-        background-color: #efefef;
+        background-color: rgb(248, 248, 248);
+        background-image: url('../../asset/img/bg.png');
+        background-size: cover;
+        background-position: right ;
+        background-position-x: -750px;
+        background-repeat: no-repeat;
         /* 当视口宽度 < 1000px 时隐藏 */
         @media (max-width: 999px) {
             display: none;
