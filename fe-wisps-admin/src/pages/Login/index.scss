@@ -4,6 +4,13 @@
   color: #333;
   margin-top: 20px;
 }
+/* 去掉 AntD Tabs 底部分隔线 */
+:where(.css-dev-only-do-not-override-198drv2).ant-tabs-top > .ant-tabs-nav::before,
+:where(.css-dev-only-do-not-override-198drv2).ant-tabs-bottom > .ant-tabs-nav::before,
+:where(.css-dev-only-do-not-override-198drv2).ant-tabs-top > div > .ant-tabs-nav::before,
+:where(.css-dev-only-do-not-override-198drv2).ant-tabs-bottom > div > .ant-tabs-nav::before {
+    border-bottom: none;
+}
 .ant-card .ant-card-head, .ant-card .ant-card-head ant-tabs-nav{
     border: none;
 }
@@ -18,13 +25,17 @@
     position: relative;
     
     .login-sider{
-        width: 500px;
+        width: 800px;
         height: 100%;
-        background-color: #efefef;
+        background-color: #f8fafe;
         /* 当视口宽度 < 1000px 时隐藏 */
         @media (max-width: 999px) {
             display: none;
         }
+        background-image: url('../../assets/bg.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 90%;
     }
 
     .login-container{
@@ -75,7 +86,7 @@
                 }
             }
 
-            .qr{
+            .qrBtn{
                 position: absolute;
                 top:5px;
                 right:5px;
@@ -86,12 +97,12 @@
                 clip-path:polygon(0 0,100% 0,100% 100%); /* 直角三角形 */
                 border-radius: 0 8px 0 0;
                 z-index: 1;
-                font-size: 48px;
-                text-align: center;
+                font-size: 40px;
+                text-align: right;
                 color: white;
             }
 
-            .qr:hover{
+            .qrBtn:hover{
                 background-color: #3875f7;
             }
 
@@ -123,7 +134,7 @@
 }
 
 /* 进入登录框且鼠标在二维码上时，延迟 200 ms 显示气泡 */
-.login:hover .qr:hover ~ .bubble,
+.login:hover .qrBtn:hover ~ .bubble,
 .login:hover .bubble:hover {   /* 允许鼠标滑到气泡上 */
     visibility: visible;
     opacity: 1;

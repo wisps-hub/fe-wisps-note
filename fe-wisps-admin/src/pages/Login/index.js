@@ -1,23 +1,24 @@
-import { Card, Input, Form, Button, Checkbox, Divider } from 'antd';
+import { Card, Input, Form, Button, Checkbox, Divider, Modal } from 'antd';
 import { CloudOutlined, QrcodeOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import './index.scss'
 
 
 const inputs = {
-    'phone' : <Form.Item>
-                <Input size='large' placeholder="输入手机号" />
+    'phone' : <Form.Item name='phone'>
+                <Input autoFocus size='large' placeholder="输入手机号" />
             </Form.Item>,
-    'email' : <Form.Item>
-                <Input size='large' placeholder="输入邮箱" />
+    'email' : <Form.Item name='email'>
+                <Input autoFocus size='large' placeholder="输入邮箱" />
             </Form.Item>
 }
 
 const Login = ()=>{
 
+    const [form] = Form.useForm();
     const [activeTabKey, setActiveTabKey] = useState('phone');
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-    
     return (
         <div className='container'>
             <div className='login-sider'>
@@ -27,12 +28,12 @@ const Login = ()=>{
             <div className='login-container'>
                 <div className='login'>
 
-                    <Button className='qr' style={{border: "none"}}> 
+                    <Button className='qrBtn' style={{border: "none"}}> 
                         <QrcodeOutlined />
                     </Button>
-                    <div class="bubble">
+                    <div className="bubble">
                         <p>扫码登录</p>
-                        <span class="arrow"></span>
+                        <span className="arrow"></span>
                     </div>
 
                     <Card
@@ -49,9 +50,19 @@ const Login = ()=>{
                             }
                         ]}
                         activeTabKey={activeTabKey}
-                        onTabChange={ key => setActiveTabKey(key)}
+                        onTabChange={ key => {
+                            form.resetFields()
+                            setActiveTabKey(key)
+                        }}
                     >
-                        <Form >
+                        <Form form={form} onFinish={values =>{
+                            const remember = values['remember']
+                            if(!remember){
+                                setIsModalOpen(true);
+                                return
+                            }
+                            console.log(values)
+                        }}>
                             {inputs[activeTabKey]}
                             <Form.Item>
                                 <Button size='large' type='primary' htmlType='submit' block>下一步</Button>
@@ -71,7 +82,7 @@ const Login = ()=>{
 
                     <div className='otherLogin'>
                         <Divider className='text'>更多登录方式</Divider>
-                        <Button size="large" icon={<CloudOutlined />} block> SSO 登陆 </Button>
+                        <Button disabled size="large" icon={<CloudOutlined />} block> SSO 登陆 </Button>
                     </div>
 
                     <div className='registerText'>
@@ -81,6 +92,18 @@ const Login = ()=>{
                 </div>
             </div>
 
+            <Modal
+                okText='确定'
+                cancelText='取消'
+                closable={{ 'aria-label': 'Custom Close Button' }}
+                open={isModalOpen}
+                onOk={()=>{
+                    form.setFieldValue('remember', true)
+                    setIsModalOpen(false)
+                }}
+                onCancel={()=>setIsModalOpen(false)}>
+                <p>必须勾选协议</p>
+            </Modal>
         </div>
             
     )
