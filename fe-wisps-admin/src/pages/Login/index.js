@@ -2,6 +2,7 @@ import { Card, Input, Form, Button, Checkbox, Divider, Modal } from 'antd';
 import { CloudOutlined, QrcodeOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import './index.scss'
+import { useNavigate } from 'react-router-dom';
 
 
 const inputs = {
@@ -14,7 +15,7 @@ const inputs = {
 }
 
 const Login = ()=>{
-
+    const navigate = useNavigate();
     const [form] = Form.useForm();
     const [activeTabKey, setActiveTabKey] = useState('phone');
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -62,6 +63,11 @@ const Login = ()=>{
                                 return
                             }
                             console.log(values)
+                            console.log(values['phone'])
+                            if(values['phone'] === '18888888888'){
+                                localStorage.setItem('token', '18888888888')
+                                navigate('/home')
+                            }
                         }}>
                             {inputs[activeTabKey]}
                             <Form.Item>
