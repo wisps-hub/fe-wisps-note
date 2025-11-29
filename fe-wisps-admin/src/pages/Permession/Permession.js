@@ -2,6 +2,7 @@ import { Button, Table, Tag, Modal} from "antd";
 import { ExclamationCircleFilled } from '@ant-design/icons';
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { getMenusAPI } from "@/apis/Menu";
 
 
 const Permession = ()=>{
@@ -52,10 +53,9 @@ const Permession = ()=>{
   const [menuList, setMenuList] = useState([])
 
   useEffect(()=>{
-    const initMenuList = ()=>{
-      axios.get("http://localhost:8000/menus?_embed=subMenus").then(res=>{
-        setMenuList(res.data)
-      })
+    const initMenuList = async ()=>{
+      const res = await getMenusAPI()
+      setMenuList(res)
     }
     initMenuList();
   }, [])
@@ -64,7 +64,7 @@ const Permession = ()=>{
       <div>
           <Table dataSource={menuList}
            columns={columns} 
-           childrenColumnName="subMenus"
+           childrenColumnName="permChilds"
            pagination={{pageSize:10}} />
       </div>
   )
